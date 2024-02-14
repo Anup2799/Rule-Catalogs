@@ -1,0 +1,114 @@
+[
+    {
+      "id": "A1",
+      "image": "Image/F.png",
+      "image_text": "Food Produce"
+      
+    },
+    {
+      "id": "A2",
+      "image": "Image/M.png",
+      "image_text": "Manufacturing"
+      
+    },
+    {
+      "id": "A3",
+      "image": "Image/P.png",
+      "image_text": "Pharma"
+      
+    },
+    {
+      "id": "A4",
+      "image": "Image/R.png",
+      "image_text": "Retail"
+      
+    },
+    {
+      "id": "B1",
+      "image": "Image/a1.png",
+      "image_text": "Regulatory -[A]"
+      
+    },
+    {
+      "id": "B2",
+      "image": "Image/a1.png",
+      "image_text": "Transportation"
+      
+    },
+    {
+      "id": "B3",
+      "image": "Image/a1.png",
+      "image_text": "Supplier Rules"
+      
+    },
+    {
+      "id": "B4",
+      "image": "Image/a1.png",
+      "image_text": "Certification -[A]"
+      
+    },
+    {
+      "id": "B5",
+      "image": "Image/a1.png",
+      "image_text": "B5"
+      
+    },
+    {
+      "id": "B6",
+      "image": "Image/a1.png",
+      "image_text": "B6"
+      
+    },
+    {
+      "id": "B7",
+      "image": "Image/a1.png",
+      "image_text": "B7"
+      
+    },
+    {
+      "id": "B8",
+      "image": "Image/a1.png",
+      "image_text": "B8"
+      
+    },
+    {
+      "id": "B9",
+      "image": "Image/a1.png",
+      "image_text": "B9"
+      
+    },
+    {
+      "id": "B10",
+      "image": "Image/a1.png",
+      "image_text": "B10"
+      
+    },
+    {
+      "id": "B11",
+      "image": "Image/a1.png",
+      "image_text": "B11"
+      
+    },
+    {
+      "id": "B12",
+      "image": "Image/a1.png",
+      "image_text": "B12"
+      
+    },
+    {
+      "id": "B13",
+      "image": "Image/a1.png",
+      "image_text": "B13"
+      
+    },
+    {
+      "id": "B14",
+      "image": "Image/a1.png",
+      "image_text": "B14"
+      
+    }
+    
+    
+   
+  ]
+  
