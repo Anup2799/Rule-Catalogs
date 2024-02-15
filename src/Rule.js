@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   title3: {
     textAlign: 'center',
     fontWeight: 'bold',
-    marginTop: '30px', // Add margin top
+    marginTop: '20px', // Add margin top
     marginBottom: '20px', // Reduce margin bottom
     marginRight: '270px'
   },
@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginTop: '25px', // Increased margin for more vertical gap
+    marginTop: '5px', // Increased margin for more vertical gap
     margin: '0 15px 15px 15px', // Adjusted margin to reduce vertical gap
   },
   catalogImageContainer: {
@@ -89,7 +89,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#000',
     display: 'inline-block',
     marginRight: '50px',
-   
   },
   catalogImage: {
     width: 'auto',
@@ -109,14 +108,19 @@ const useStyles = makeStyles((theme) => ({
   buttonContainer: {
     display: 'flex',
     flexDirection: 'column',
- 
-    marginRight:'925px',
+    marginRight: '925px',
     marginTop: '16px',
+  },
+  baseCatalogContainer: {
+    maxHeight: '400px', // Adjust height as needed
+    overflowY: 'auto',
   },
 }));
 
 const RuleCatalogPage = () => {
   const classes = useStyles();
+  const baseCatalogRef = useRef(null); // Ref for the "Base Catalog -" section
+
   const [ruleSets, setRuleSets] = useState([]);
   const [showMore, setShowMore] = useState(false);
   const [selectedImageText, setSelectedImageText] = useState(null);
@@ -131,6 +135,10 @@ const RuleCatalogPage = () => {
       .then(data => setRuleSets(data))
       .catch(error => console.error('Error fetching rule sets:', error));
   }, []);
+
+  const scrollToBaseCatalog = () => {
+    baseCatalogRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const handleButtonClick = (imageText, isButton) => {
     // Check if the click was on a button
@@ -197,37 +205,39 @@ const RuleCatalogPage = () => {
         </div>
         <div style={{ borderLeft: '1px solid #ccc', margin: '0 20px' }}></div> {/* Vertical line */}
         <div className={classes.column}>
-          <Typography variant="h6" className={classes.title3}>
-            Base Catalogs -
-          </Typography>
-          <div className={classes.rowContainer}>
-            {ruleSets.slice(4, showMore ? ruleSets.length : 8).reduce((rows, ruleSet, index, array) => {
-              if (index % 2 === 0) rows.push(array.slice(index, index + 2));
-              return rows;
-            }, []).map((row, rowIndex) => (
-              <div key={rowIndex} className={classes.row}>
-                {row.map(ruleSet => (
-                  <div key={ruleSet.id} className={classes.catalogItem2}>
-                    <div className={classes.catalogImageContainer}>
-                      <span className={classes.bulletCircle}></span> {/* Bullet circle */}
-                      <img
-                        src={ruleSet.image}
-                        alt={ruleSet.image_text}
-                        className={classes.catalogImage}
-                        onClick={() => handleButtonClick(ruleSet.image_text, false)}
-                      />
-                    </div>
-                    <Typography variant="body1">{ruleSet.image_text}</Typography>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-          {!showMore && (
-            <Typography variant="body1" style={{cursor: 'pointer', color: 'blue',}} onClick={() => setShowMore(true)}>
-              Load (10) more
+          <div className={classes.baseCatalogContainer} ref={baseCatalogRef}>
+            <Typography variant="h6" className={classes.title3}>
+              Base Catalogs -
             </Typography>
-          )}
+            <div className={classes.rowContainer}>
+              {ruleSets.slice(4, showMore ? ruleSets.length : 8).reduce((rows, ruleSet, index, array) => {
+                if (index % 2 === 0) rows.push(array.slice(index, index + 2));
+                return rows;
+              }, []).map((row, rowIndex) => (
+                <div key={rowIndex} className={classes.row}>
+                  {row.map(ruleSet => (
+                    <div key={ruleSet.id} className={classes.catalogItem2}>
+                      <div className={classes.catalogImageContainer}>
+                        <span className={classes.bulletCircle}></span> {/* Bullet circle */}
+                        <img
+                          src={ruleSet.image}
+                          alt={ruleSet.image_text}
+                          className={classes.catalogImage}
+                          onClick={() => handleButtonClick(ruleSet.image_text, false)}
+                        />
+                      </div>
+                      <Typography variant="body1">{ruleSet.image_text}</Typography>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+            {!showMore && (
+              <Typography variant="body1" style={{ cursor: 'pointer', color: 'blue',textAlign:'center' }} onClick={() => { setShowMore(true); scrollToBaseCatalog(); }}>
+                Load (10) more
+              </Typography>
+            )}
+          </div>
           <div className={classes.buttonGroup2}>
             <Button variant="contained" color="primary" className={classes.button} disabled={moreInfoDisabled}>
               More Info
